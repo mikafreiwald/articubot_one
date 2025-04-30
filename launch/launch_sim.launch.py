@@ -36,24 +36,28 @@ def generate_launch_description():
     twist_mux = Node(
             package="twist_mux",
             executable="twist_mux",
-            parameters=[twist_mux_params, {'use_sim_time': True}],
+            parameters=[twist_mux_params, {'use_sim_time': True, 'use_stamped': False}],
             remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
         )
 
 
-    default_world = os.path.join(
+    # default_world = os.path.join(
+    #     get_package_share_directory(package_name),
+    #     'worlds',
+    #     'obstacles.world'
+    #     )    
+    
+    world = os.path.join(
         get_package_share_directory(package_name),
         'worlds',
-        'empty.world'
-        )    
-    
-    world = LaunchConfiguration('world')
+        'turtlebot3_house.world'
+    )
 
-    world_arg = DeclareLaunchArgument(
-        'world',
-        default_value=default_world,
-        description='World to load'
-        )
+    # world_arg = DeclareLaunchArgument(
+    #     'world',
+    #     default_value=default_world,
+    #     description='World to load'
+    #     )
 
     # Include the Gazebo launch file, provided by the ros_gz_sim package
     gazebo = IncludeLaunchDescription(
@@ -125,7 +129,7 @@ def generate_launch_description():
         rsp,
         joystick,
         twist_mux,
-        world_arg,
+        # world_arg,
         gazebo,
         spawn_entity,
         diff_drive_spawner,
