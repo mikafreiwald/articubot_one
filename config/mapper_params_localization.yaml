@@ -15,7 +15,7 @@ slam_toolbox:
     mode: localization
 
     # if you'd like to start localizing on bringup in a map and pose
-    map_file_name: /home/mika/jazzy-ws/src/articubot_one/maps/house_map_serial
+    map_file_name: /home/vamexcni/code/vamex/nav2_ws/src/articubot_one/maps/warehouse_map_serial
     # map_start_pose: [5.0, 1.0, 0.0]
 
     debug_logging: false
